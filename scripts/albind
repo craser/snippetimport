@@ -1,0 +1,24 @@
+#!/bin/bash
+################################################################################
+# Usage:
+#        albind [abbreviation] [expansion]
+#
+abv=${1}                                                # abbreviation
+exp=${2}                                                # expansion
+alfred_snippet_db="$HOME/Library/Application Support/Alfred 2/Alfred.alfredpreferences/clipboard/snippets.alfdb"
+
+
+for arg in "${abv}" "${exp}"; do
+    if [ -z "${arg}" ]; then
+        echo "usage: `basename ${0}` <abbreviateion> <expansion>"
+        exit 10
+    fi
+done
+
+echo "Binding Alfred snippet: [\"${abv}\": \"${exp}\"]"
+update_sql="insert into snippets (name, keyword, snippet) values ('${abv}', '${abv}', '${exp}')"
+sqlite3 "${alfred_snippet_db}" "${update_sql}"
+
+
+
+

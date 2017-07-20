@@ -20,8 +20,7 @@ public class Main
                     snip.getAbbreviation(),
                     snip.getExpansion()
             };
-            System.out.println(snip);
-            //Runtime.getRuntime().exec(command).waitFor();
+            Runtime.getRuntime().exec(command).waitFor();
         }
     }
 }
